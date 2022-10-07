@@ -11,16 +11,19 @@ class Users extends Component {
   addUser = (event) => {
     event.preventDefault();
     let newUser = this.myRef.current.value;
+    if(newUser!==""){ 
     this.myRef.current.value = "";
     this.setState((state) => {
       return { users: state.users.concat(newUser) };
-    });
+    }
+    );}
+    else {alert("nie jestes chyba noname chinski");}
   };
   deleteUser = (userIndex) => {
     // console.log(userIndex);
     this.setState((state) => {
       return {
-        users: state.users.filter((user,index) => index !== userIndex)
+        users: state.users.filter((user, index) => index !== userIndex),
       };
     });
   };
@@ -30,7 +33,7 @@ class Users extends Component {
       <div className="main">
         <h1>Users List</h1>
         <form onSubmit={this.addUser}>
-          <input ref={this.myRef} type="text" placeholder="Enter name" />
+          <input ref={this.myRef} type="text" placeholder="Enter name" maxLength={30} />
           <button type="submit">Add user</button>
         </form>
         <UsersList
