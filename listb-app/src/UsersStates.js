@@ -7,7 +7,12 @@ const UsersStates = () => {
   let myRef = React.createRef();
   const deleteUser = (userIndex) => {
     // console.log(userIndex);
-    setUsers(users.filter((user, index) => index !== userIndex));
+    setUsers(
+      users.filter((user,index) => {
+        console.log(index);
+        return index !== userIndex;
+      })
+    );
   };
 
   const addUser = (event) => {
@@ -29,7 +34,7 @@ const UsersStates = () => {
           ref={myRef}
           type="text"
           placeholder="Enter name"
-          maxlength="30"
+          maxLength="30"
         />
         <button type="submit">Add user</button>
       </form>
